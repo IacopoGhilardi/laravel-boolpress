@@ -18,8 +18,10 @@ class PostsTableSeeder extends Seeder
             $post = new Post;
 
             $post->title = $faker->sentence($nbWords = 3, $variableNbWords = true);
-            $post->title = $faker->name;
-            $post->text = $faker->realText(2000);
+            $post->subtitle = $faker->sentence($nbWords = 10, $variableNbWords = true);
+            $post->author = $faker->name();
+            $post->text = $faker->realText(500);
+            $post->publication_date = $faker->dateTime($max = 'now', $timezone = 'GMT');
             $post->save();
         }
         
