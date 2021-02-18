@@ -14,7 +14,7 @@ class InfoPostsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $posts = Post::all();
+        $posts = Post::select('id')->get();
         
         foreach ($posts as $post) {
             //creo l'istanza

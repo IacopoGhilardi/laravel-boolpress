@@ -15,8 +15,8 @@ class CommentsTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         //
-        $posts = Post::all();
-        // $posts = Post::select('id');
+        // $posts = Post::all();
+        $posts = Post::select('id')->get();
         
         foreach ($posts as $post) {
 
