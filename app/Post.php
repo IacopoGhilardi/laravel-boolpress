@@ -12,4 +12,9 @@ class Post extends Model
         'author',
         'text',
     ];
+
+    //db relationship
+    public function infoPost() {
+        return $this->HasOne('App\InfoPost');
+    }
 }
