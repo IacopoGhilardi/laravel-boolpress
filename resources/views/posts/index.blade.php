@@ -8,10 +8,8 @@
 </head>
 <body>
 
-    <div>
-        
+    <div> 
         <h2>Tutti i post</h2>
-
         <ul>
             @foreach ($posts as $post)
                 <li>
@@ -23,6 +21,5 @@
             @endforeach
         </ul>
     </div>
-    
 </body>
 </html>

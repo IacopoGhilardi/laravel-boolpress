@@ -16,5 +16,10 @@
     <p>POST STATUS: {{ $post->infoPost->post_status }}</p>
     <p>COMMENT STATUS: {{ $post->infoPost->comment_status }}</p>
 
+    <h2>Comments</h2>
+    @foreach ($post->comments as $comment)
+        <p>{{ $comment->author }}</p>
+        <p>{{ $comment->text }}</p>
+    @endforeach
 </body>
 </html>
