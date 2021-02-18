@@ -16,6 +16,7 @@ class CommentsTableSeeder extends Seeder
     {
         //
         // $posts = Post::all();
+        //prendo solo la colonna degli id
         $posts = Post::select('id')->get();
         
         foreach ($posts as $post) {
