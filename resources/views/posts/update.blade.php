@@ -58,7 +58,7 @@
             <h5>Tags</h5>
             @foreach ($tags as $tag)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="tag-{{ $tag->id }}" name="tags[]" @if ($post->tags->contains($tag->id)) checked @endif>
+                    <input class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="{{ $tag->id }}" name="tags[]" @if ($post->tags->contains($tag->id)) checked @endif>
                     <label class="form-check-label" for="{{ $tag->id }}">{{ $tag->name }}</label>
                 </div>
             @endforeach

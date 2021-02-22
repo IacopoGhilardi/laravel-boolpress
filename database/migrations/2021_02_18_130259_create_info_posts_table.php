@@ -24,7 +24,8 @@ class CreateInfoPostsTable extends Migration
             //db relationships
             $table->foreign('post_id')
                 ->references('id')
-                ->on('posts');
+                ->on('posts')
+                ->onDelete('cascade');
         });
     }
 
