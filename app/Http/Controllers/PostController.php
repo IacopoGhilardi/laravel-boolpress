@@ -90,9 +90,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
         //
+        $tags = Tag::all();
+        return view('posts.update', compact('post', 'tags'));
     }
 
     /**
@@ -102,9 +104,22 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         //
+        $data = $request->all();
+        // dd($data);
+        $post->update($data);
+        $infoPost = $post->infoPost;
+        $infoPost->update($data);
+
+        if (empty($data["tags"])) {
+            $post->tags()->detach();
+        } else {
+            $post->tags()->sync($data["tags"]);
+        }
+
+        return redirect()->route('posts.index')->with('status', 'updated');
     }
 
     /**
