@@ -1,7 +1,9 @@
 @extends('layout.main')
 
 @section('header')
-
+    <div class="container text-center mt-5 mb-4">
+        <h1>Blog</h1>
+    </div>
 @endsection
 
 @section('content')
@@ -18,5 +20,8 @@
                 </li>
             @endforeach
         </ul>
+    </div>
+    <div class="container">
+        <a class="btn btn-primary" href="{{ route('posts.create') }}">Inserisci il tuo articolo</a>
     </div>
 @endsection

@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 
 class PostController extends Controller
 {
+    private $validator = [
+        'title' => 'required|max:30',
+        'author' => 'required',
+        'text' => 'required',
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +32,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $tags = Tag::all();
+        return view('posts.create', compact('tags'));
     }
 
     /**
