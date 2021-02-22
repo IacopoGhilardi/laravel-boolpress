@@ -48,6 +48,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        // dd($post->Comments);
+        //con le realzione mi porta in automatico gli attributi di comments e info post
         return view('posts.show', compact('post'));
     }
 

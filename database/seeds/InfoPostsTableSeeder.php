@@ -15,13 +15,14 @@ class InfoPostsTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $posts = Post::select('id')->get();
+        // $posts = Post::pluck('id');
         
         foreach ($posts as $post) {
             //creo l'istanza
             $infoPost = new InfoPost();
 
             //valorizzo i parametri
-            $infoPost->post_id = $post->id;
+            $infoPost->post_id = $post;
             $infoPost->post_status = $faker->randomElement(['public', 'private', 'draft']);
             $infoPost->comment_status = $faker->randomElement(['open', 'private', 'closed']);
             $infoPost->save();

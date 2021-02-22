@@ -1,25 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{{ $post->title }}</h1>
-    <h4>{{ $post->subtitle }}</h4>
+@extends('layout.main')
 
-    <article>{{ $post->text }}</article>
-    <small>{{ $post->author }}</small>
-    <small>{{ $post->publication_date }}</small>
-    <p>POST STATUS: {{ $post->infoPost->post_status }}</p>
-    <p>COMMENT STATUS: {{ $post->infoPost->comment_status }}</p>
+@section('header')
+    <div class="container text-center mt-5 mb-4">
+        <h1>{{ $post->title }}</h1>
+        <h4>{{ $post->subtitle }}</h4>
+    </div>
+@endsection
 
-    <h2>Comments</h2>
-    @foreach ($post->comments as $comment)
-        <p>{{ $comment->author }}</p>
-        <p>{{ $comment->text }}</p>
-    @endforeach
-</body>
-</html>
+@section('content')
+    <div class="container">
+        
+        <article>{{ $post->text }}</article>
+        <div class="d-flex justify-content-between mt-2">
+            <small>{{ $post->author }}</small>
+            <small>{{ $post->publication_date }}</small>
+        </div>
+        <p class="mt-3">POST STATUS: {{ $post->infoPost->post_status }}</p>
+        <p>COMMENT STATUS: {{ $post->infoPost->comment_status }}</p>
+        <h5>Comments:</h5>
+        @foreach ($post->comments as $comment)
+            <div class="card my-4 p-2">
+                <span>{{ $comment->text }}</span>
+                <span class="mt-2">{{ $comment->author }}</span>
+            </div>
+        @endforeach
+    </div>
+@endsection
