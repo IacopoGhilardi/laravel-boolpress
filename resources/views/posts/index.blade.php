@@ -16,6 +16,11 @@
                         <p>{{ $post->subtitle }}</p>
                         <small>{{ $post->author }}</small>
                         <a href="{{ route('posts.show', $post) }}">vedi dettagli</a>
+                        <div class="d-flex">
+                            @foreach ($post->tags as $tag)
+                                <span class="badge rounded-pill bg-info text-dark m-1">{{ $tag->name }}</span>
+                            @endforeach
+                        </div>
                     </div>
                 </li>
             @endforeach

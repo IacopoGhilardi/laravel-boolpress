@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\InfoPost;
 use App\Tag;
+use DateTime;
+
 
 class PostController extends Controller
 {
@@ -12,7 +15,10 @@ class PostController extends Controller
         'title' => 'required|max:30',
         'author' => 'required',
         'text' => 'required',
+        'post_status' => 'required',
+        'comment_status' => 'required',
     ];
+
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +50,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validazione parametri del form
+        $request->validate($this->validator);
+
+        $data = $request->all();
+        //post
+        $post = new Post();
+        $date = new DateTime();
+        $post['publication_date'] = $date->format('Y-m-d H:i:s');
+        $post->fill($data);
+        $post->save();
+        //infopost
+        $infoPost = new InfoPost();
+        $infoPost['post_id'] = $post->id;
+        $infoPost->fill($data);
+        $infoPost->save();
+
+        $post->tags()->attach($data["tags"]);
+
+        return redirect()->route('posts.index')->with('post creato correttamente');
+
     }
 
     /**
@@ -55,7 +80,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        // dd($post->Comments);
         //con le realzione mi porta in automatico gli attributi di comments e info post
         return view('posts.show', compact('post'));
     }
