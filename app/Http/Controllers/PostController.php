@@ -7,6 +7,7 @@ use App\Post;
 use App\InfoPost;
 use App\Tag;
 use DateTime;
+use Carbon\Carbon;
 
 
 class PostController extends Controller
@@ -56,8 +57,8 @@ class PostController extends Controller
         $data = $request->all();
         //post
         $post = new Post();
-        $date = new DateTime();
-        $post['publication_date'] = $date->format('Y-m-d H:i:s');
+        $date = new Carbon();
+        $post['publication_date'] = $date::now();
         $post->fill($data);
         $post->save();
         //infopost
@@ -108,7 +109,6 @@ class PostController extends Controller
     {
         //
         $data = $request->all();
-        // dd($data);
         $post->update($data);
         $infoPost = $post->infoPost;
         $infoPost->update($data);
