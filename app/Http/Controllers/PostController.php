@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\InfoPost;
 use App\Tag;
+use App\Comment;
 use DateTime;
 use Carbon\Carbon;
 
@@ -18,6 +19,11 @@ class PostController extends Controller
         'text' => 'required',
         'post_status' => 'required',
         'comment_status' => 'required',
+    ];
+
+    private $commentValidator = [
+        'author' => 'required',
+        'text' => 'required',
     ];
 
     /**
@@ -131,5 +137,21 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addComment(Request $request, Post $post)
+    {
+        //
+        $request->validate($this->commentValidator);
+        $data = $request->all();
+        //inizializzo il commento e salvo i dati
+        $comment = new Comment();
+        $comment ->fill($data);
+        $comment["post_id"] = $post->id;
+
+        $comment->save();
+
+        return redirect()->route('posts.show', compact('post'))->with('status', 'updated');
+
     }
 }

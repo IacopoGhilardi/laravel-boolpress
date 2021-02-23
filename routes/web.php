@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::resource('posts', 'PostController');
+
+Route::post('posts/addComment/{post}', 'PostController@addComment')->name('posts.addComment');
