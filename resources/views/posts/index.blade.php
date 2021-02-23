@@ -23,7 +23,11 @@
                         </div>
                     </div>
                     <a href="{{ route('posts.edit', $post) }}" class="btn btn-success">Modifica</a>
-                    <a href="{{ route('posts.destroy', $post) }}" class="btn btn-danger">Elimina</a>
+                    <form action="{{ route('posts.destroy', $post )}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Elimina</button>
+                    </form>
                 </li>
             @endforeach
         </ul>

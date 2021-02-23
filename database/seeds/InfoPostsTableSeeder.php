@@ -22,7 +22,7 @@ class InfoPostsTableSeeder extends Seeder
             $infoPost = new InfoPost();
 
             //valorizzo i parametri
-            $infoPost->post_id = $post;
+            $infoPost->post_id = $post->id;
             $infoPost->post_status = $faker->randomElement(['public', 'private', 'draft']);
             $infoPost->comment_status = $faker->randomElement(['open', 'private', 'closed']);
             $infoPost->save();
