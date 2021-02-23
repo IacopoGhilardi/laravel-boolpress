@@ -134,14 +134,16 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        dd($post);
+        $post->delete();
+
+        return redirect()->route('posts.index')->with('status', 'Post deleted');
     }
 
     public function addComment(Request $request, Post $post)
     {
-        //
         $request->validate($this->commentValidator);
         $data = $request->all();
         //inizializzo il commento e salvo i dati
@@ -152,6 +154,5 @@ class PostController extends Controller
         $comment->save();
 
         return redirect()->route('posts.show', compact('post'))->with('status', 'updated');
-
     }
 }

@@ -32,10 +32,14 @@
         @foreach ($post->comments as $comment)
             <div class="card my-4 p-2">
                 <span>{{ $comment->text }}</span>
-                <span class="mt-2">{{ $comment->author }}</span>
+                <div class="mt-2 d-flex justify-content-between">
+                    <span>{{ $comment->author }}</span>
+                    <span>{{ Carbon\Carbon::parse($comment->created_at)->locale('it')->diffForHumans() }}</span>
+                </div>
             </div>
         @endforeach
 
+        {{-- creazione nuovo commento --}}
         <form action="{{ route('posts.addComment', $post )}}" method="post">
             @csrf
             @method('POST')

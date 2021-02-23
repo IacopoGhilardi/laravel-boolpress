@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <a href="{{ route('posts.edit', $post) }}" class="btn btn-success">Modifica</a>
-                    <a href="{{ route('posts.update', $post) }}" class="btn btn-danger">Elimina</a>
+                    <a href="{{ route('posts.destroy', $post) }}" class="btn btn-danger">Elimina</a>
                 </li>
             @endforeach
         </ul>
